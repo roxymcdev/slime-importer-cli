@@ -9,3 +9,11 @@ After downloading cli jar file from [releases](https://github.com/roxymc-net/sli
 java -jar slime-importer-cli.jar --help
 ```
 for help.
+
+## Compiling
+
+To compile, navigate to project root directory and run:
+
+```shell
+./gradlew shadowJar
+```
