@@ -22,10 +22,12 @@ class Main : CliktCommand() {
         .required()
     private val source by option("-s", "--source")
         .file(mustExist = true, canBeDir = true, mustBeReadable = true)
+        .convert { it.absoluteFile }
         .help("The input file/dir path")
         .required()
     private val output by option("-o", "--output")
         .file(canBeFile = false, canBeDir = false)
+        .convert { it.absoluteFile }
         .help("The output file path")
         .required()
     private val worldTags by option()
