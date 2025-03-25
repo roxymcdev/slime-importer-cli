@@ -1,4 +1,4 @@
-package net.roxymc.slime.importer.cli.impl.world.block.entity
+package net.roxymc.slime.importer.cli.world.impl.block.entity
 
 import net.kyori.adventure.nbt.CompoundBinaryTag
 import net.roxymc.slime.world.block.entity.BlockEntity

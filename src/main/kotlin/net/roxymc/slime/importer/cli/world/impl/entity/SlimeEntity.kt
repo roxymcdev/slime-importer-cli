@@ -1,10 +1,10 @@
-package net.roxymc.slime.importer.cli.impl.world
+package net.roxymc.slime.importer.cli.world.impl.entity
 
 import net.kyori.adventure.nbt.CompoundBinaryTag
-import net.roxymc.slime.world.Heightmaps
+import net.roxymc.slime.world.entity.Entity
 
-class SlimeHeightmaps(
+class SlimeEntity(
     private val tag: CompoundBinaryTag
-) : Heightmaps {
+) : Entity {
     override fun tag(): CompoundBinaryTag = tag
 }

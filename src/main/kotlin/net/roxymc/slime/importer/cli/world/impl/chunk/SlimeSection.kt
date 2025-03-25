@@ -1,4 +1,4 @@
-package net.roxymc.slime.importer.cli.impl.world.chunk
+package net.roxymc.slime.importer.cli.world.impl.chunk
 
 import net.roxymc.slime.world.biome.Biomes
 import net.roxymc.slime.world.block.state.BlockStates

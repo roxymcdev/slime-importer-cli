@@ -1,10 +1,10 @@
-package net.roxymc.slime.importer.cli.impl.world.entity
+package net.roxymc.slime.importer.cli.world.impl.biome
 
 import net.kyori.adventure.nbt.CompoundBinaryTag
-import net.roxymc.slime.world.entity.Entity
+import net.roxymc.slime.world.biome.Biomes
 
-class SlimeEntity(
+class SlimeBiomes(
     private val tag: CompoundBinaryTag
-) : Entity {
+) : Biomes {
     override fun tag(): CompoundBinaryTag = tag
 }
