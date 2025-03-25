@@ -5,14 +5,14 @@ import com.github.ajalt.clikt.core.main
 import com.github.ajalt.clikt.parameters.options.*
 import com.github.ajalt.clikt.parameters.types.enum
 import com.github.ajalt.clikt.parameters.types.file
-import net.roxymc.slime.importer.cli.impl.world.SlimeHeightmaps
-import net.roxymc.slime.importer.cli.impl.world.SlimeWorld
-import net.roxymc.slime.importer.cli.impl.world.biome.SlimeBiomes
-import net.roxymc.slime.importer.cli.impl.world.block.entity.SlimeBlockEntity
-import net.roxymc.slime.importer.cli.impl.world.block.state.SlimeBlockStates
-import net.roxymc.slime.importer.cli.impl.world.chunk.SlimeChunk
-import net.roxymc.slime.importer.cli.impl.world.chunk.SlimeSection
-import net.roxymc.slime.importer.cli.impl.world.entity.SlimeEntity
+import net.roxymc.slime.importer.cli.world.impl.SlimeHeightmaps
+import net.roxymc.slime.importer.cli.world.impl.SlimeWorld
+import net.roxymc.slime.importer.cli.world.impl.biome.SlimeBiomes
+import net.roxymc.slime.importer.cli.world.impl.block.entity.SlimeBlockEntity
+import net.roxymc.slime.importer.cli.world.impl.block.state.SlimeBlockStates
+import net.roxymc.slime.importer.cli.world.impl.chunk.SlimeChunk
+import net.roxymc.slime.importer.cli.world.impl.chunk.SlimeSection
+import net.roxymc.slime.importer.cli.world.impl.entity.SlimeEntity
 import net.roxymc.slime.loader.SlimeLoader
 
 class Main : CliktCommand() {
@@ -32,12 +32,15 @@ class Main : CliktCommand() {
         .required()
     private val worldTags by option()
         .split(",")
-        .help("World tags to preserve")
+        .help("World tags to preserve (supported only by Anvil)")
         .default(emptyList())
     private val chunkTags by option()
         .split(",")
-        .help("Chunk tags to preserve")
+        .help("Chunk tags to preserve (supported only by Anvil)")
         .default(emptyList())
+    private val optimizeChunks by option()
+        .help("Enables chunks optimization (skips empty chunks)")
+        .flag()
 
     private val slimeLoader = SlimeLoader.builder()
         .deserializers { builder ->
@@ -56,7 +59,7 @@ class Main : CliktCommand() {
     override fun run() {
         val importStart = System.currentTimeMillis()
 
-        val slimeImporter = importer.build(slimeLoader, worldTags.toTypedArray(), chunkTags.toTypedArray())
+        val slimeImporter = importer.build(slimeLoader, worldTags.toTypedArray(), chunkTags.toTypedArray(), optimizeChunks)
         val result = try {
             slimeImporter.importWorld(source)
         } catch (e: Exception) {
